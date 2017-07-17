@@ -1,0 +1,29 @@
+<meta charset="utf-8" />
+<script src="/tester.js"></script>
+<script src="../node_modules/jinkela/umd.js"></script>
+<script src="../index.js"></script>
+<script>
+addEventListener('load', () => {
+
+  let cascader = new Cascader({
+    options: [
+      {
+        text: 'item 1',
+        value: 1,
+        options: [
+          { text: 'item 1.1', value: 2 },
+          { text: 'item 1.2' }
+        ]
+      },
+      { text: 'item 2' }
+    ],
+    placeholder: 'placeholder'
+  }).to(document.body);
+
+  // The placeholder attribute must be set on INPUT now
+  Tester.assert(cascader.element.querySelector('input').getAttribute('placeholder') === 'placeholder');
+
+  Tester.feedback(true);
+
+});
+</script>

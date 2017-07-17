@@ -16,29 +16,16 @@ addEventListener('load', () => {
         ]
       },
       { text: 'item 2' }
-    ]
+    ],
+    readonly: true
   }).to(document.body);
 
-  // Focus
+  // Try to focus but failfured
   cascader.element.querySelector('input').dispatchEvent(new Event('focus'));
-
-  // Click the first item
-  document.querySelector('li').click();
-  Tester.assert(cascader.value.length === 1);
-  Tester.assert(cascader.value[0] === 1);
-
-  // Click body to close panel
-  document.body.click();
   Tester.assert(document.querySelector('ul') === null);
 
-  // Focus again
-  cascader.element.querySelector('input').dispatchEvent(new Event('focus'));
-
-  // Click a second level item
-  for (let li of document.querySelectorAll('li')) if (li.textContent === 'item 1.1') li.click();
-  Tester.assert(cascader.value.length === 2);
-  Tester.assert(cascader.value[0] === 1);
-  Tester.assert(cascader.value[1] === 2);
+  // The disabled attribute must be set on INPUT now
+  Tester.assert(cascader.element.querySelector('input').getAttribute('disabled') === 'disabled');
 
   Tester.feedback(true);
 
