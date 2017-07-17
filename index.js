@@ -124,7 +124,14 @@
     }
     show() {
       let rect = this.cascader.element.getBoundingClientRect();
-      this.element.style.top = rect.top + rect.height + 5;
+      let clientHeight = document.body.clientHeight;
+      if (clientHeight / 2 > rect.top + rect.height / 2) {
+        this.element.style.top = rect.top + rect.height + 5;
+        this.element.style.bottom = 'auto';
+      } else {
+        this.element.style.top = 'auto';
+        this.element.style.bottom = clientHeight - rect.top + 5;
+      }
       this.element.style.left = rect.left;
       document.body.appendChild(this.element);
     }
@@ -138,7 +145,7 @@
     get styleSheet() {
       return `
         :scope {
-          position: absolute;
+          position: fixed;
           transform-origin: center top 0px;
           z-index: 2005;
           border: 1px solid #d1dbe5;
