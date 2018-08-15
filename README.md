@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-npm install jinkela-cascader
+yarn install jinkela-cascader
 ```
 
 ## Usage
