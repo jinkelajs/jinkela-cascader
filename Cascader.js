@@ -1,6 +1,10 @@
+var Cascader; // eslint-disable-line no-unused-vars
+
 {
 
-  const PANEL_CLASS_NAME = 'jinkela_cascader_' + Array.from({ length: 16 }, () => (36 * Math.random() | 0).toString(36)).join('');
+  const PANEL_CLASS_NAME = 'jinkela_cascader_' + Array.from({ length: 16 }, () => {
+    return (36 * Math.random() | 0).toString(36);
+  }).join('');
 
   class CascaderItem extends Jinkela {
     get tagName() { return 'li'; }
@@ -139,7 +143,12 @@
       this.element.remove();
     }
     hideIfOut(target) {
-      if (this.element.contains(target) || this.element === target || this.cascader.element.contains(target) || this.cascader.element === target) return;
+      if (
+        this.element.contains(target) ||
+        this.element === target ||
+        this.cascader.element.contains(target) ||
+        this.cascader.element === target
+      ) return;
       this.hide();
     }
     get styleSheet() {
@@ -160,7 +169,7 @@
     }
   }
 
-  class Cascader extends Jinkela {
+  Cascader = class Cascader extends Jinkela {
     beforeParse(params) {
       params.placeholder = params.placeholder || 'Cascader Selector';
     }
@@ -180,7 +189,8 @@
     get template() {
       return `
         <div>
-          <input ref="input" type="input" placeholder="{placeholder}" on-focus="{focus}" on-blur="{blur}" readonly="readonly" />
+          <input ref="input" type="input" placeholder="{placeholder}"
+                 on-focus="{focus}" on-blur="{blur}" readonly="readonly" />
         </div>
       `;
     }
@@ -229,7 +239,7 @@
         }
       `;
     }
-  }
+  };
 
   addEventListener('click', event => {
     let list = document.querySelectorAll('.' + PANEL_CLASS_NAME);
@@ -237,7 +247,5 @@
       list[i].jinkela.hideIfOut(event.target);
     }
   });
-
-  window.Cascader = Cascader;
 
 }
