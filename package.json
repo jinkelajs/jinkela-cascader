@@ -1,18 +1,21 @@
 {
   "name": "jinkela-cascader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Cascader on Jinkela",
-  "main": "index.js",
+  "main": "Cascader.js",
   "author": "YanagiEiichi (admin@web-tinker.com)",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint index.js --fix",
-    "test": "ui-tester-start tests/*/*.html"
+    "lint": "eslint Cascader.js --fix",
+    "test": "npm run lint && ui-tester-start tests/*/*.html",
+    "prepublish": "global2umd Cascader.js > umd.js"
   },
   "devDependencies": {
+    "global2umd": "^0.0.1",
+    "eslint": "^4.2.0",
+    "eslint-config-elemefe": "^0.3.0",
     "jinkela-1.2.x": "github:jinkelajs/jinkela#1.2.21",
     "jinkela-1.3.x": "github:jinkelajs/jinkela#1.3.5",
-    "eslint": "^4.2.0",
-    "eslint-config-elemefe": "^0.3.0"
+    "ui-tester": "~1.2.0"
   }
 }
